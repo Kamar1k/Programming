@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,18 +18,30 @@ namespace ObjectOrientedPractics.Model
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set 
+            { 
+                ValueValidator.AssertStringOnlengs(value,200,nameof(Name));
+                _name = value; 
+            }
         }
 
         public string Info
         {
             get { return _info; }
-            set { _info = value; }
+            set 
+            {
+                ValueValidator.AssertStringOnlengs(value, 1000, nameof(Info));
+                _info = value; 
+            }
         }
         public double Cost  
         {
             get { return _cost; } 
-            set {_cost = value; } 
+            set 
+            {
+                ValueValidator.AssertValueInRange(value,0,100000, nameof(Cost));
+                _cost = value; 
+            } 
         }
 
         public Item(string name, string info, double cost)
